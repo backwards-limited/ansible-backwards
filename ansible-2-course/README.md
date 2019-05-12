@@ -6,4 +6,6 @@ Table of Contents
 
 - [Installation](docs/installation.md)
 
-- [Ansible installation](docs/ansible-installation.md)
+- [Ansible Installation](docs/ansible-installation.md)
+
+- [Ansible Introduction](docs/ansible-introduction.md)

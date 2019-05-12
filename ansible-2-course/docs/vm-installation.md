@@ -58,4 +58,4 @@ Finally, start our VM using the Ubuntu image we downloaded:
 
 ![Ubuntu user](images/ubuntu-user.png)
 
-For this (noddy) VM setup, we don't actually care about security, so I went for a weak password of **password**.
+For this (noddy) VM setup, we don't actually care about security, so I went for a weak password of **password** and automatic login.
