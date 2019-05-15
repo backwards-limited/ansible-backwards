@@ -57,21 +57,21 @@ web2   RUNNING   0           -        10.0.3.229   -      false
 ```
 
 ```bash
-$ vim hosts.ini
+$ vim hosts # or hosts.ini or inventory
 ```
 
 ```properties
 [allservers]
-10.0.3.167 ansible_connection=local
-10.0.3.86 ansible_connection=local
-10.0.3.229 ansible_connection=local
+10.0.3.226 ansible_connection=local
+10.0.3.88 ansible_connection=local
+10.0.3.10 ansible_connection=local
 
 [database]
-10.0.3.167 ansible_connection=local
+10.0.3.226 ansible_connection=local
 
 [web]
-10.0.3.86 ansible_connection=local
-10.0.3.229 ansible_connection=local
+10.0.3.88 ansible_connection=local
+10.0.3.10 ansible_connection=local
 ```
 
 Again, we can look at the default file for examples:
@@ -92,21 +92,21 @@ $ ansible <group/machine> -m module -a <args> (-k for ask-pass)
 ```bash
 $ sudo lxc-ls -f
 NAME   STATE     AUTOSTART   GROUPS   IPV4         IPV6   UNPRIVILIGED
-db1    RUNNING   0           -        10.0.3.167   -      false
-web1   RUNNING   0           -        10.0.3.86    -      false
-web2   RUNNING   0           -        10.0.3.229   -      false
+db1    RUNNING   0           -        10.0.3.226   -      false
+web1   RUNNING   0           -        10.0.3.88    -      false
+web2   RUNNING   0           -        10.0.3.10    -      false
 ```
 
 #### Ping
 
 ```bash
-$ ansible 10.0.3.229 -m ping -i hosts.ini
+$ ansible 10.0.3.10 -m ping -i hosts
 ```
 
 where **-i** is for **inventory**. But the result might be:
 
 ```bash
-10.0.3.229 | UNREACHABLE
+10.0.3.10 | UNREACHABLE
 ...
 ```
 
@@ -119,45 +119,45 @@ $ ssh-keygen -t rsa
 
 $ ssh-add ~/.ssh/id_rsa
 
-$ ssh-copy-id -i ~/.ssh/id_rsa ubuntu@10.0.3.229
+$ ssh-copy-id -i ~/.ssh/id_rsa ubuntu@10.0.3.10
 ```
 
 ```bash
-$ ansible 10.0.3.229 -m ping -i hosts.ini
-10.0.3.229 | SUCCESS
+$ ansible 10.0.3.10 -m ping -i hosts
+10.0.3.10 | SUCCESS
 ...
 ```
 
 P.S. We can add a user to the remote users via the default installed **ubuntu** user e.g.
 
 ```bash
-$ ssh ubuntu@10.0.3.229
+$ ssh ubuntu@10.0.3.10
 
 $ sudo adduser davidainslie
 ```
 
 ```bash
-$ ssh davidainslie@10.0.3.229
+$ ssh davidainslie@10.0.3.10
 ```
 
 We can ping a **group**:
 
 ```bash
-$ ansible web -m ping -i hosts.ini
-10.0.3.229 | SUCCESS
+$ ansible web -m ping -i hosts
+10.0.3.10 | SUCCESS
 ...
-10.0.3.86 | SUCCESS
+...       | SUCCESS
 ...
 ```
 
 ```bash
-$ ansible allservers -m ping -i hosts.ini
+$ ansible allservers -m ping -i hosts
 ```
 
 Ping as some **user**:
 
 ```bash
-$ ansible allservers -m ping -i hosts.ini -u root
+$ ansible allservers -m ping -i hosts -u root
 ```
 
 #### APT-GET
@@ -165,17 +165,17 @@ $ ansible allservers -m ping -i hosts.ini -u root
 Let's install **nginx** on our web servers:
 
 ```bash
-$ sudo ansible web -a "apt-get update" -i hosts.ini
+$ sudo ansible web -a "apt-get update" -i hosts
 ```
 
 ```bash
-$ sudo ansible web -a "apt-get -y install nginx" -i hosts.ini
+$ sudo ansible web -a "apt-get -y install nginx" -i hosts
 ```
 
 and check:
 
 ```bash
-$ sudo ansible web -m service -a "name=nginx state=restarted" -i hosts.ini
+$ sudo ansible web -m service -a "name=nginx state=restarted" -i hosts
 ```
 
 

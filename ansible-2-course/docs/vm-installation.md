@@ -30,7 +30,19 @@ Setup up a VM with Virtualbox. Upon opening Virtualbox:
 
 ![VM step 7](images/vm-step-7.png)
 
-Finally, start our VM using the Ubuntu image we downloaded:
+It would be a good idea to share this project's **src** with our **virtual machine** (as we'll use this later):
+
+![Select shared folders](images/select-shared-folders.png)
+
+---
+
+![Add shared folder](images/add-shared-folder.png)
+
+---
+
+![Shard folder ok](images/shared-folder-ok.png)
+
+Start our VM using the Ubuntu image we downloaded:
 
 ![VM start](images/vm-start.png)
 
@@ -59,3 +71,24 @@ Finally, start our VM using the Ubuntu image we downloaded:
 ![Ubuntu user](images/ubuntu-user.png)
 
 For this (noddy) VM setup, we don't actually care about security, so I went for a weak password of **password** and automatic login.
+
+![Sharing](images/sharing.png)
+
+```bash
+$ sudo apt-get update
+
+$ sudo apt-get install build-essential gcc make perl dkms
+
+$ reboot
+```
+
+Now, select **Devices** from VM menu and **Insert Guest Additions CD image...**
+
+![Devices](images/devices.png)
+
+```bash
+$ sudo adduser davidainslie vboxsf
+Adding user davidainslie to group vboxsf
+```
+
+Reboot the VM. Using **Files** app, navigate to **computer > media > davidainslie**

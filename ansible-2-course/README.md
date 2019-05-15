@@ -9,3 +9,5 @@ Table of Contents
 - [Ansible Installation](docs/ansible-installation.md)
 
 - [Ansible Introduction](docs/ansible-introduction.md)
+
+- [Ansible Playbooks](docs/ansible-playbooks.md)
